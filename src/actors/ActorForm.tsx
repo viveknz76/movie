@@ -6,6 +6,7 @@ import { actorCreationDTO } from './actors.model';
 import * as Yup from 'yup';
 import DateField from '../forms/DateField';
 import ImageField from '../forms/ImageField';
+import MarkdownField from '../forms/MarkdownField';
 
 export default function ActorForm(props: actorFormProps) {
   const validationSchema = Yup.object({
@@ -23,6 +24,7 @@ export default function ActorForm(props: actorFormProps) {
         <Form>
           <TextField displayName="Name" field="name" />
           <DateField displayName="Date of Birth" field="dateOfBirth" />
+          <MarkdownField displayName="Biography" field="biography" />
           <ImageField
             displayName="Picture"
             field="picture"
