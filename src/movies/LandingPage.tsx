@@ -5,7 +5,7 @@ import MoviesList from './MoviesList';
 export default function LandingPage() {
   const [movies, setMovies] = useState<landingPageDTO>({});
 
-  const inTheaterMovies = [
+  const inTheaters = [
     {
       id: 1,
       title: 'Spider-Man: Far From Home',
@@ -38,7 +38,7 @@ export default function LandingPage() {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setMovies({
-        inTheaters: inTheaterMovies,
+        inTheaters: inTheaters,
         upcomingMovies: upcomingMovies,
       });
     }, 1000);
