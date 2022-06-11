@@ -7,6 +7,7 @@ import TextField from '../forms/TextField';
 import DateField from '../forms/DateField';
 import ImageField from '../forms/ImageField';
 import CheckboxField from '../forms/CheckboxField';
+import MultipleSelector from '../forms/MultipleSelector';
 
 export default function MovieForm(props: movieFormProps) {
   return (
@@ -29,6 +30,12 @@ export default function MovieForm(props: movieFormProps) {
             displayName="Poster"
             field="poster"
             imageURL={props.model.posterURL}
+          />
+          <MultipleSelector
+            displayName="Genres"
+            nonSelected={[]}
+            selected={[]}
+            onChange={(selected, nonSelected) => {}}
           />
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save Changes
