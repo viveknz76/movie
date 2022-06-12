@@ -1,9 +1,23 @@
+import { actorMovieDTO } from '../actors/actors.model';
 import { genreDTO } from '../genres/genres.model';
+import { movieTheaterDTO } from '../movietheaters/movieTheater.model';
 import MovieForm from './MovieForm';
 
 export default function EditMovie() {
   const selectedGenres: genreDTO[] = [{ id: 1, name: 'Comedy' }];
   const nonSelectedGenres: genreDTO[] = [{ id: 2, name: 'Drama' }];
+
+  const selectedMovieTheaters: movieTheaterDTO[] = [
+    { id: 1, name: 'Te Awa' },
+    { id: 3, name: 'City Centre' },
+  ];
+  const nonSelectedMovieTheaters: movieTheaterDTO[] = [
+    { id: 2, name: 'Chartwell' },
+  ];
+
+  const selectedActors: actorMovieDTO[] = [
+    { id: 1, name: 'Daniel Craig', character: '', picture: '' },
+  ];
 
   return (
     <>
@@ -18,6 +32,9 @@ export default function EditMovie() {
         onSubmit={(values) => console.log(values)}
         nonSelectedGenres={nonSelectedGenres}
         selectedGenres={selectedGenres}
+        nonSelectedMovieTheaters={nonSelectedMovieTheaters}
+        selectedMovieTheaters={selectedMovieTheaters}
+        selectedActors={selectedActors}
       />
     </>
   );
