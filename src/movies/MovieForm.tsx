@@ -15,8 +15,6 @@ import { genreDTO } from '../genres/genres.model';
 import { movieTheaterDTO } from '../movietheaters/movieTheater.model';
 import TypeAheadActors from '../forms/TypeAheadActors';
 import { actorMovieDTO } from '../actors/actors.model';
-import ActorForm from '../actors/ActorForm';
-import { act } from 'react-dom/test-utils';
 
 export default function MovieForm(props: movieFormProps) {
   const [selectedGenres, setSelectedGenres] = useState(
@@ -50,6 +48,7 @@ export default function MovieForm(props: movieFormProps) {
       onSubmit={(values, actions) => {
         values.genresIds = selectedGenres.map((item) => item.key);
         values.movieTheatersIds = selectedMovieTheaters.map((item) => item.key);
+        values.actors = selectedActors;
         props.onSubmit(values, actions);
       }}
       validationSchema={Yup.object({
