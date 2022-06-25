@@ -1,3 +1,12 @@
+export interface actorDTO {
+    id: number;
+    name: string;
+    dateOfBirth: Date;
+    biography: string;
+    character: string;
+    picture: string;
+}
+
 export interface actorCreationDTO{
     name: string;
     dateOfBirth?: Date;
