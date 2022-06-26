@@ -30,6 +30,7 @@ export default function EditEntity<TCreate, TRead>(
       }
     }
   }
+
   return (
     <>
       <h3>Edit {props.entityName}</h3>
