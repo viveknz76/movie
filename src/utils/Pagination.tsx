@@ -104,3 +104,7 @@ interface paginationProps {
   radio: number; // how many pages are we going to display
   onChange(page: number): void;
 }
+
+Pagination.defaultProps = {
+  radio: 3,
+};
