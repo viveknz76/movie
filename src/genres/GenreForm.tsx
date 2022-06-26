@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import TextField from '../forms/TextField';
 import Button from '../utils/Button';
 import * as Yup from 'yup';
-import { genereCreationDTO } from './genres.model';
+import { genreCreationDTO } from './genres.model';
 
 export default function GenreForm(props: genreFormProps) {
   return (
@@ -33,9 +33,9 @@ export default function GenreForm(props: genreFormProps) {
 }
 
 interface genreFormProps {
-  model: genereCreationDTO;
+  model: genreCreationDTO;
   onSubmit(
-    values: genereCreationDTO,
-    action: FormikHelpers<genereCreationDTO>
+    values: genreCreationDTO,
+    action: FormikHelpers<genreCreationDTO>
   ): void;
 }

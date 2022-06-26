@@ -1,4 +1,4 @@
-export interface genereCreationDTO{
+export interface genreCreationDTO{
     name: string;
 }
 
