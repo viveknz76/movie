@@ -1,36 +1,29 @@
+import axios, { AxiosResponse } from 'axios';
 import { ReactElement, useState } from 'react';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { actorMovieDTO } from '../actors/actors.model';
+import { urlActors } from '../endpoints';
 
 export default function TypeAheadActors(props: typeAheadActorsProps) {
-  const actors: actorMovieDTO[] = [
-    {
-      id: 1,
-      name: 'Tom Holland',
-      character: '',
-      picture:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/330px-Tom_Holland_by_Gage_Skidmore.jpg',
-    },
-    {
-      id: 2,
-      name: 'Jessica Biel',
-      character: '',
-      picture:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Jessica_Biel_2013.jpg/330px-Jessica_Biel_2013.jpg',
-    },
-    {
-      id: 3,
-      name: 'Daniel Craig',
-      character: '',
-      picture:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7f/Daniel_Craig_-_Film_Premiere_%22Spectre%22_007_-_on_the_Red_Carpet_in_Berlin_%2822387409720%29_%28cropped%29.jpg',
-    },
-  ];
+  const [actors, setActors] = useState<actorMovieDTO[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const selected: actorMovieDTO[] = [];
+
   const [draggedElement, setDraggedElement] = useState<
     actorMovieDTO | undefined
   >(undefined);
+
+  function handleSearch(query: string) {
+    setIsLoading(true);
+
+    axios
+      .get(`${urlActors}/searchByName/${query}`)
+      .then((response: AxiosResponse<actorMovieDTO[]>) => {
+        setActors(response.data);
+        setIsLoading(false);
+      });
+  }
 
   function handleDragStart(actor: actorMovieDTO) {
     setDraggedElement(actor);
@@ -57,17 +50,18 @@ export default function TypeAheadActors(props: typeAheadActorsProps) {
   return (
     <div className="mb-3">
       <label>{props.displayName}</label>
-      <Typeahead
+      <AsyncTypeahead
         id="typeahead"
         onChange={(actors) => {
           if (props.actors.findIndex((x) => x.id === actors[0].id) === -1) {
             props.onAdd([...props.actors, actors[0]]);
           }
-          console.log(actors);
         }}
         options={actors}
         labelKey={(actor) => actor.name}
-        filterBy={['name']}
+        filterBy={() => true}
+        isLoading={isLoading}
+        onSearch={handleSearch}
         placeholder="Write the name of the actor..."
         minLength={1}
         flip={true}
