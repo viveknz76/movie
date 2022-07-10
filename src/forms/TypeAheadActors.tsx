@@ -54,6 +54,7 @@ export default function TypeAheadActors(props: typeAheadActorsProps) {
         id="typeahead"
         onChange={(actors) => {
           if (props.actors.findIndex((x) => x.id === actors[0].id) === -1) {
+            actors[0].character ='';
             props.onAdd([...props.actors, actors[0]]);
           }
         }}

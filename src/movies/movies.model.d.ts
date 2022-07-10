@@ -9,6 +9,7 @@ export interface movieDTO {
 
 export interface movieCreationDTO {
     title: string;
+    summary?: string;
     inTheaters:  boolean;
     trailer: string;
     releaseDate?: Date;
