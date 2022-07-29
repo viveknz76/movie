@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
+import Authorised from '../auth/Authorised';
 import { urlMovies } from '../endpoints';
 import AlertContext from '../utils/AlertContext';
 import { landingPageDTO } from './movies.model';
@@ -23,6 +24,11 @@ export default function LandingPage() {
         value={() => {
           loadData();
         }}
+      />
+      <Authorised
+        authorised={<>You are authorised</>}
+        notAuthorised={<>You are not authorised</>}
+        role="admin"
       />
       <h3>In Theaters</h3>
       <MoviesList movies={movies.inTheaters} />
